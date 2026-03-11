@@ -1,4 +1,8 @@
 {
+  "framework": null,
+  "outputDirectory": ".",
+  "buildCommand": "",
+  "installCommand": "",
   "rewrites": [
     { "source": "/animator", "destination": "/animator/index.html" },
     { "source": "/animator/", "destination": "/animator/index.html" },
