@@ -6,156 +6,57 @@
   <title>Flashlight Quiz — English Club</title>
   <meta name="description" content="Flashlight Quiz Game — A real-time multiplayer quiz for the Flashlight University English Club." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.08) 0%, transparent 60%), var(--color-bg);
-    }
-
-    .hero {
-      text-align: center;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .hero-logo {
-      width: 7rem; height: 7rem;
-      background: var(--color-gold);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.5rem;
-      margin: 0 auto 2rem;
-      box-shadow: 0 0 60px rgba(255,215,0,0.5), 0 0 120px rgba(255,215,0,0.2);
-      animation: logoPulse 3s ease-in-out infinite;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 12vw, 6rem);
-      color: var(--color-gold);
-      letter-spacing: 0.1em;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-
-    .hero-subtitle {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 3rem;
-      letter-spacing: 0.05em;
-    }
-
-    .role-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .role-card {
-      display: block;
-      text-decoration: none;
-      background: var(--color-surface);
-      border: 1.5px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      padding: 1.75rem 1rem;
-      text-align: center;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .role-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    }
-
-    .role-card.animator:hover { border-color: var(--color-gold); box-shadow: 0 12px 40px rgba(255,215,0,0.2); }
-    .role-card.left:hover     { border-color: var(--color-left); box-shadow: 0 12px 40px rgba(239,68,68,0.2); }
-    .role-card.right:hover    { border-color: var(--color-right); box-shadow: 0 12px 40px rgba(59,130,246,0.2); }
-
-    .role-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
-
-    .role-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.25rem;
-    }
-
-    .role-card.animator .role-name { color: var(--color-gold); }
-    .role-card.left     .role-name { color: var(--color-left); }
-    .role-card.right    .role-name { color: var(--color-right); }
-
-    .role-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
-
-    .instructions {
-      background: rgba(255,215,0,0.05);
-      border: 1px solid rgba(255,215,0,0.15);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.5rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      text-align: left;
-      line-height: 1.7;
-    }
-
-    .instructions strong { color: var(--color-gold); }
-
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      opacity: 0.6;
-    }
-
-    @media (max-width: 480px) {
-      .role-cards { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="public/output.css" />
 </head>
-<body>
-  <div class="hero">
+<body class="min-h-screen flex flex-col items-center justify-center p-8 bg-navy text-light"
+      style="background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.08) 0%, transparent 60%), #0d1b2a;">
+
+  <div class="text-center max-w-[600px] w-full">
+
     <!-- Logo -->
-    <div class="hero-logo">🔦</div>
-    <h1 class="hero-title">FLASHLIGHT</h1>
-    <p class="hero-subtitle">University English Club · Real-Time Quiz Game</p>
+    <div class="w-28 h-28 bg-gold rounded-full flex items-center justify-center text-6xl mx-auto mb-8 animate-logo-pulse"
+         style="box-shadow: 0 0 60px rgba(255,215,0,0.5), 0 0 120px rgba(255,215,0,0.2);">
+      🔦
+    </div>
+
+    <h1 class="font-display text-gold tracking-widest leading-none mb-1"
+        style="font-size: clamp(3rem, 12vw, 6rem);">FLASHLIGHT</h1>
+    <p class="text-muted text-base mb-12 tracking-wide">University English Club · Real-Time Quiz Game</p>
 
     <!-- Role Cards -->
-    <div class="role-cards">
-      <a href="./animator/index.html" class="role-card animator">
-        <span class="role-icon">🎬</span>
-        <div class="role-name">ANIMATOR</div>
-        <p class="role-desc">Host the game, launch questions, control the timer and scoreboard.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+
+      <!-- Animator -->
+      <a href="./animator/index.html"
+         class="block no-underline bg-surface border-[1.5px] border-dark rounded-xl py-7 px-4 text-center transition-all duration-250 hover:-translate-y-1.5 hover:border-gold"
+         style="box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+        <span class="text-4xl mb-3 block">🎬</span>
+        <div class="font-display text-xl tracking-wider text-gold mb-1">ANIMATOR</div>
+        <p class="text-xs text-muted leading-snug">Host the game, launch questions, control the timer and scoreboard.</p>
       </a>
-      <a href="./left/index.html" class="role-card left">
-        <span class="role-icon">🔴</span>
-        <div class="role-name">TEAM LEFT</div>
-        <p class="role-desc">Connect and buzz to answer questions before Team Right!</p>
+
+      <!-- Team Left -->
+      <a href="./left/index.html"
+         class="block no-underline bg-surface border-[1.5px] border-dark rounded-xl py-7 px-4 text-center transition-all duration-250 hover:-translate-y-1.5 hover:border-crimson"
+         style="box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+        <span class="text-4xl mb-3 block">🔴</span>
+        <div class="font-display text-xl tracking-wider text-crimson mb-1">TEAM LEFT</div>
+        <p class="text-xs text-muted leading-snug">Connect and buzz to answer questions before Team Right!</p>
       </a>
-      <a href="./right/index.html" class="role-card right">
-        <span class="role-icon">🔵</span>
-        <div class="role-name">TEAM RIGHT</div>
-        <p class="role-desc">Connect and buzz to answer questions before Team Left!</p>
+
+      <!-- Team Right -->
+      <a href="./right/index.html"
+         class="block no-underline bg-surface border-[1.5px] border-dark rounded-xl py-7 px-4 text-center transition-all duration-250 hover:-translate-y-1.5 hover:border-azure"
+         style="box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+        <span class="text-4xl mb-3 block">🔵</span>
+        <div class="font-display text-xl tracking-wider text-azure mb-1">TEAM RIGHT</div>
+        <p class="text-xs text-muted leading-snug">Connect and buzz to answer questions before Team Left!</p>
       </a>
     </div>
 
-    <!-- Quick Instructions -->
-    <div class="instructions">
-      <strong>How to start a game:</strong><br/>
-      1. Animator opens <strong>/animator</strong> → clicks <strong>LAUNCH GAME</strong> → shares the Session ID.<br/>
-      2. Team Left opens <strong>/left</strong> → enters the Session ID → clicks <strong>CONNECT</strong>.<br/>
-      3. Team Right does the same on <strong>/right</strong>.<br/>
-      4. Animator clicks <strong>START TIMER</strong> — first team to <strong>BUZZ</strong> gets to answer!
-    </div>
-
-    <p class="footer">Powered by PeerJS · Made for Flashlight English Club · Static, no server needed.</p>
+    <p class="mt-8 text-xs text-muted opacity-60">Powered by PeerJS · Made for Flashlight English Club · Static, no server needed.</p>
   </div>
 </body>
 </html>

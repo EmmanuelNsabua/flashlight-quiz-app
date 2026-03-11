@@ -1,8 +1,8 @@
 {
   "framework": null,
   "outputDirectory": ".",
-  "buildCommand": "",
-  "installCommand": "",
+  "buildCommand": "npx @tailwindcss/cli -i ./css/input.css -o ./public/output.css",
+  "installCommand": "npm install",
   "rewrites": [
     { "source": "/animator", "destination": "/animator/index.html" },
     { "source": "/animator/", "destination": "/animator/index.html" },
