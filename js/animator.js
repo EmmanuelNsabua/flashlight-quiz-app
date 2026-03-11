@@ -56,7 +56,7 @@ function cacheDom() {
     "optA", "optB", "optC", "optD",
     "buzzPanel", "buzzMsg",
     "scoreLeft", "scoreRight",
-    "connLeft", "connRight", "connLeftDot", "connRightDot",
+    "connLeft", "connRight", "connDotLeft", "connDotRight",
     "setupScreen", "gameScreen", "endScreen",
     "winnerText", "finalScoreLeft", "finalScoreRight",
     "peerStatus", "phaseLabel",
@@ -112,9 +112,12 @@ function launchGame() {
   STATE.peer.on("open", (id) => {
     // Broadcast the session ID so teams can connect
     document.getElementById("sessionIdDisplay").textContent = id;
-    document.getElementById("sessionIdBox").classList.remove("hidden");
+    const sessionBox = document.getElementById("sessionIdBox");
+    sessionBox.classList.remove("hidden");
+    sessionBox.style.display = "flex";
     setStatus("peerStatus", "✅ Live! Share the Session ID with your teams.");
     DOM.gameScreen.classList.remove("hidden");
+    DOM.gameScreen.style.display = "grid";
     DOM.setupScreen.classList.add("hidden");
     displayQuestion(STATE.currentIndex);
   });
@@ -229,11 +232,12 @@ function displayQuestion(index) {
 
   const letters = ["A", "B", "C", "D"];
   const optBtns = [DOM.optA, DOM.optB, DOM.optC, DOM.optD];
+  const optBaseClass = "option-btn flex items-center gap-3 py-3.5 px-4 rounded-xl border-[1.5px] border-dark text-light text-sm font-medium";
   q.options.forEach((opt, i) => {
     if (optBtns[i]) {
       optBtns[i].querySelector(".option-letter").textContent = letters[i];
       optBtns[i].querySelector(".option-text").textContent = opt;
-      optBtns[i].className = "option-btn";
+      optBtns[i].className = optBaseClass;
     }
   });
 
@@ -326,7 +330,9 @@ function nextQuestion() {
 function endGame() {
   broadcast({ type: "gameOver", scores: STATE.scores });
   DOM.gameScreen.classList.add("hidden");
+  DOM.gameScreen.style.display = "none";
   DOM.endScreen.classList.remove("hidden");
+  DOM.endScreen.style.display = "flex";
   DOM.finalScoreLeft.textContent = STATE.scores.left;
   DOM.finalScoreRight.textContent = STATE.scores.right;
 
@@ -362,8 +368,9 @@ function resetBuzzIndicator() {
 
 // ── Connection Indicators ──────────────────────────────
 function updateConnIndicator(team, connected) {
-  const dot  = DOM[`connDot${team.charAt(0).toUpperCase() + team.slice(1)}`] || document.getElementById(`connDot${team.charAt(0).toUpperCase() + team.slice(1)}`);
-  const span = DOM[`conn${team.charAt(0).toUpperCase() + team.slice(1)}`] || document.getElementById(`conn${team.charAt(0).toUpperCase() + team.slice(1)}`);
+  const capTeam = team.charAt(0).toUpperCase() + team.slice(1);
+  const dot  = DOM[`connDot${capTeam}`] || document.getElementById(`connDot${capTeam}`);
+  const span = DOM[`conn${capTeam}`] || document.getElementById(`conn${capTeam}`);
   if (dot) dot.className = "conn-dot " + (connected ? "connected" : "error");
   if (span) span.textContent = connected ? "Connected" : "Offline";
 }

@@ -94,13 +94,10 @@ function applyTeamTheme() {
   // Set body class and text content based on team
   document.body.classList.add(`team-${TEAM}`);
   if (DOM.teamLabel) DOM.teamLabel.textContent = TEAM === "left" ? "⬅ TEAM LEFT" : "TEAM RIGHT ➡";
+  // Don't wipe buzz button classes — just add team identifier
   if (DOM.btnBuzz) {
-    DOM.btnBuzz.className = `buzz-btn ${TEAM}-btn`;
-    DOM.btnBuzz.querySelector("span").textContent = "BUZZ";
+    DOM.btnBuzz.classList.add(`${TEAM}-btn`);
   }
-  // Set role badge
-  const badge = document.querySelector(".role-badge");
-  if (badge) badge.textContent = TEAM === "left" ? "Team Left" : "Team Right";
   // Set page title
   document.title = `Flashlight — Team ${TEAM.charAt(0).toUpperCase() + TEAM.slice(1)}`;
 }
@@ -284,10 +281,11 @@ function displayQuestion(data) {
     DOM.optionsWrap.innerHTML = "";
     data.options.forEach((opt, i) => {
       const btn = document.createElement("div");
-      btn.className = "option-btn";
+      btn.className = "option-btn flex items-center gap-3 py-3.5 px-4 rounded-xl border-[1.5px] border-dark text-light text-sm font-medium";
+      btn.style.background = "rgba(255,255,255,0.04)";
       btn.id = `opt-${i}`;
       btn.innerHTML = `
-        <span class="option-letter">${letters[i]}</span>
+        <span class="option-letter flex items-center justify-center w-8 h-8 bg-dark rounded-lg font-extrabold text-sm text-gold shrink-0">${letters[i]}</span>
         <span class="option-text">${opt}</span>
       `;
       DOM.optionsWrap.appendChild(btn);
@@ -318,6 +316,7 @@ function revealAnswer(correctIndex) {
 function showEndScreen(scores) {
   if (!DOM.endOverlay) return;
   DOM.endOverlay.classList.remove("hidden");
+  DOM.endOverlay.style.display = "flex";
 
   const teamColor = TEAM === "left" ? "var(--color-left)" : "var(--color-right)";
   const myScore = scores[TEAM];
