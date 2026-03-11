@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashlight Quiz — Animator</title>
+  <meta name="description" content="Flashlight Quiz Animator control panel. Launch questions, manage the timer, and track scores." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── Animator layout ── */
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+
+    .main-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      grid-template-rows: auto 1fr auto;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Left column (spans 2 rows) */
+    .col-main   { grid-column: 1; display: flex; flex-direction: column; gap: 1rem; }
+    /* Right column */
+    .col-side   { grid-column: 2; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* ── Question + Options card ── */
+    .question-card { flex: 1; }
+    .option-btn { cursor: default; }
+
+    /* ── Timer + Controls row ── */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .timer-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .controls-btns { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+
+    /* ── Scoring controls ── */
+    .scoring-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .scoring-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.25rem; }
+
+    /* ── Setup screen ── */
+    #setupScreen {
+      position: fixed; inset: 0;
+      background: var(--color-bg);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .setup-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .setup-logo {
+      width: 5rem; height: 5rem;
+      background: var(--color-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 0 32px rgba(255,215,0,0.5);
+    }
+
+    /* ── Session ID box ── */
+    #sessionIdBox {
+      background: rgba(255,215,0,0.07);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    #sessionIdDisplay {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      display: block;
+    }
+
+    /* ── Phase label ── */
+    .phase-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+    }
+
+    /* ── End screen ── */
+    #endScreen {
+      position: fixed; inset: 0;
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .end-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--shadow-card);
+      animation: slideUp 0.5s ease;
+    }
+
+    .final-scores {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .final-score-box {
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius-xl);
+      min-width: 120px;
+    }
+
+    .final-score-box.left { background: var(--color-left-bg); border: 1.5px solid rgba(239,68,68,0.4); }
+    .final-score-box.right { background: var(--color-right-bg); border: 1.5px solid rgba(59,130,246,0.4); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .col-side { grid-column: 1; }
+    }
+  </style>
+</head>
+<body class="team-animator">
+
+  <!-- ════════ SETUP SCREEN ════════ -->
+  <div id="setupScreen">
+    <div class="setup-card">
+      <div class="setup-logo">🔦</div>
+      <h1 class="font-display" style="font-size:2.5rem; color:var(--color-gold); margin-bottom:0.25rem;">FLASHLIGHT</h1>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:2rem;">University English Club · Quiz Game</p>
+
+      <div id="peerStatus" style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem; min-height:1.5rem;">
+        ⏳ Loading questions…
+      </div>
+
+      <button id="btnLaunch" class="btn btn-gold btn-large" style="width:100%;">
+        🚀 LAUNCH GAME
+      </button>
+
+      <p style="color:var(--text-muted); font-size:0.75rem; margin-top:1rem;">
+        A Session ID will be generated — share it with your teams so they can connect.
+      </p>
+    </div>
+  </div>
+
+  <!-- ════════ BRAND HEADER ════════ -->
+  <header class="brand-header">
+    <div class="brand-logo">🔦</div>
+    <span class="brand-title">FLASHLIGHT</span>
+    <span style="color:var(--text-muted); font-size:0.8rem; margin-left:0.5rem;">English Club Quiz</span>
+    <span class="role-badge">🎬 Animator</span>
+  </header>
+
+  <!-- ════════ SESSION ID DISPLAY ════════ -->
+  <div id="sessionIdBox" class="hidden" style="margin:0.75rem 1.25rem 0; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+    <span style="color:var(--text-muted); font-size:0.8rem;">📡 Session ID (share with teams):</span>
+    <span id="sessionIdDisplay"></span>
+    <button class="btn btn-sm btn-outline" onclick="navigator.clipboard.writeText(document.getElementById('sessionIdDisplay').textContent).then(()=>this.textContent='✅ Copied!').catch(()=>{})">📋 Copy</button>
+  </div>
+
+  <!-- ════════ MAIN GAME SCREEN ════════ -->
+  <div id="gameScreen" class="main-layout hidden">
+
+    <!-- ── Left / Main Column ── -->
+    <div class="col-main">
+
+      <!-- Question Card -->
+      <div class="card question-card">
+        <p id="questionCounter" class="question-counter">Question 1 / 8</p>
+        <p id="questionText" class="question-text">Question will appear here…</p>
+        <div class="divider"></div>
+        <div class="options-grid">
+          <div id="optA" class="option-btn"><span class="option-letter">A</span><span class="option-text">—</span></div>
+          <div id="optB" class="option-btn"><span class="option-letter">B</span><span class="option-text">—</span></div>
+          <div id="optC" class="option-btn"><span class="option-letter">C</span><span class="option-text">—</span></div>
+          <div id="optD" class="option-btn"><span class="option-letter">D</span><span class="option-text">—</span></div>
+        </div>
+      </div>
+
+      <!-- Timer + Controls -->
+      <div class="card">
+        <div class="controls-row">
+
+          <!-- Timer ring -->
+          <div class="timer-wrap">
+            <div class="timer-ring-wrap">
+              <svg width="130" height="130" viewBox="0 0 130 130">
+                <circle class="timer-ring-bg" cx="65" cy="65" r="54"/>
+                <circle id="timerFill" class="timer-ring-fill"
+                  cx="65" cy="65" r="54"
+                  stroke-dasharray="339.29"
+                  stroke-dashoffset="0"/>
+              </svg>
+              <span id="timerValue" class="timer-text">15</span>
+            </div>
+            <!-- Progress bar (mobile friendly) -->
+            <div class="progress-bar-wrap" style="width:130px;">
+              <div id="timerProgress" class="progress-bar-fill" style="width:100%;"></div>
+            </div>
+          </div>
+
+          <!-- Control Buttons -->
+          <div class="controls-btns">
+            <span id="phaseLabel" class="phase-label">🎯 Ready — click START TIMER</span>
+            <button id="btnStartTimer" class="btn btn-gold btn-large">▶ START TIMER</button>
+            <button id="btnShowAnswer" class="btn btn-success btn-large">✅ SHOW ANSWER</button>
+            <button id="btnNextQuestion" class="btn btn-outline btn-large" disabled>➡ NEXT QUESTION</button>
+          </div>
+
+        </div>
+
+        <!-- Scoring Controls (hidden until buzz or time up) -->
+        <div id="scoringControls" class="hidden" style="margin-top:1rem;">
+          <div class="divider"></div>
+          <p class="scoring-label">Award point to:</p>
+          <div class="scoring-btns">
+            <button id="btnAwardLeft"  class="btn btn-danger" style="background:var(--color-left-bg); color:var(--color-left); border-color:rgba(239,68,68,0.4);">⬅ Team LEFT +1</button>
+            <button id="btnAwardRight" class="btn btn-outline" style="background:var(--color-right-bg); color:var(--color-right); border-color:rgba(59,130,246,0.4);">Team RIGHT +1 ➡</button>
+            <button id="btnNoPoint"    class="btn btn-outline btn-sm">❌ No point</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Right / Side Column ── -->
+    <div class="col-side">
+
+      <!-- Buzz Panel -->
+      <div class="card" style="padding:1rem;">
+        <p style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:0.75rem;">🔔 Buzz Status</p>
+        <div id="buzzPanel" class="buzz-indicator">
+          <span id="buzzMsg">No buzz yet…</span>
+        </div>
+      </div>
+
+      <!-- Scoreboard -->
+      <div class="card">
+        <p style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:0.75rem;">🏆 Scoreboard</p>
+        <div class="score-row left" style="transition:transform 0.3s;">
+          <span>⬅ Team LEFT</span>
+          <span id="scoreLeft" class="score-value">0</span>
+        </div>
+        <div class="score-row right" style="transition:transform 0.3s;">
+          <span>Team RIGHT ➡</span>
+          <span id="scoreRight" class="score-value">0</span>
+        </div>
+      </div>
+
+      <!-- Connection Status -->
+      <div class="card" style="padding:1rem;">
+        <p style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:0.75rem;">📡 Connections</p>
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <span id="connDotLeft" class="conn-dot"></span>
+            <span style="font-size:0.85rem;">⬅ Team Left</span>
+            <span id="connLeft" style="margin-left:auto; font-size:0.75rem; color:var(--text-muted);">Offline</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <span id="connDotRight" class="conn-dot"></span>
+            <span style="font-size:0.85rem;">Team Right ➡</span>
+            <span id="connRight" style="margin-left:auto; font-size:0.75rem; color:var(--text-muted);">Offline</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peer status -->
+      <div id="peerStatusGame" style="font-size:0.75rem; color:var(--text-muted); padding:0 0.25rem;"></div>
+
+    </div>
+  </div>
+
+  <!-- ════════ END SCREEN ════════ -->
+  <div id="endScreen" class="hidden" style="position:fixed;inset:0;background:rgba(13,27,42,0.96);backdrop-filter:blur(8px);z-index:100;display:flex;align-items:center;justify-content:center;">
+    <div class="end-card">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">🔦</div>
+      <p style="color:var(--text-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1rem;">Game Over</p>
+      <div id="winnerText" class="winner-badge tie">—</div>
+      <div class="final-scores">
+        <div class="final-score-box left">
+          <p style="font-size:0.8rem; color:var(--color-left); font-weight:700; margin-bottom:0.5rem;">⬅ TEAM LEFT</p>
+          <p id="finalScoreLeft" class="font-display" style="font-size:3.5rem; color:var(--color-left);">0</p>
+        </div>
+        <div class="final-score-box right">
+          <p style="font-size:0.8rem; color:var(--color-right); font-weight:700; margin-bottom:0.5rem;">TEAM RIGHT ➡</p>
+          <p id="finalScoreRight" class="font-display" style="font-size:3.5rem; color:var(--color-right);">0</p>
+        </div>
+      </div>
+      <button id="btnRestart" class="btn btn-gold btn-large" style="width:100%;">🔄 Play Again</button>
+    </div>
+  </div>
+
+  <!-- PeerJS CDN -->
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <!-- Animator Logic -->
+  <script src="../js/animator.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[
+  {
+    "question": "How do you introduce yourself in English?",
+    "options": ["I am fine", "My name is...", "I like pizza", "Hello there"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which sentence is grammatically correct?",
+    "options": ["I enjoys football", "I enjoy football", "I enjoying football", "I enjoyed football"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Complete the sentence: 'In my free time, I ___'",
+    "options": ["plays football", "play football", "playing football", "to play football"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct translation: 'Pendant mon temps libre...'",
+    "options": ["During my free time...", "In my job...", "At school...", "On my way..."],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Which sentence correctly uses 'I enjoy'?",
+    "options": ["I enjoy reading books", "I enjoy is reading", "I enjoys reading", "I enjoy to read books"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "What is the plural of 'child'?",
+    "options": ["childs", "childes", "children", "childrens"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Which word is a synonym for 'happy'?",
+    "options": ["Sad", "Angry", "Joyful", "Tired"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What tense is used in: 'She has lived in Paris for 5 years'?",
+    "options": ["Simple Past", "Present Perfect", "Future Simple", "Past Continuous"],
+    "correctAnswer": 1
+  }
+]

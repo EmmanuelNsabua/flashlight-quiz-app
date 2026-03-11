@@ -1,0 +1,579 @@
+/* =========================================================
+   FLASHLIGHT QUIZ — Shared Styles
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --color-bg:        #0d1b2a;
+  --color-surface:   #162032;
+  --color-border:    #1e3050;
+  --color-gold:      #FFD700;
+  --color-gold-dim:  #b89b00;
+  --color-left:      #EF4444;
+  --color-left-bg:   rgba(239,68,68,0.12);
+  --color-left-glow: rgba(239,68,68,0.4);
+  --color-right:     #3B82F6;
+  --color-right-bg:  rgba(59,130,246,0.12);
+  --color-right-glow:rgba(59,130,246,0.4);
+  --color-success:   #22C55E;
+  --color-wrong:     #EF4444;
+  --text-primary:    #F0F4F8;
+  --text-muted:      #8BA0B8;
+  --radius-lg:       1rem;
+  --radius-xl:       1.5rem;
+  --shadow-card:     0 8px 32px rgba(0,0,0,0.4);
+  --transition:      0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--color-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+/* ── Typography ── */
+.font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+.text-muted { color: var(--text-muted); }
+
+/* ── Flashlight Brand Header ── */
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  background: rgba(255,215,0,0.04);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brand-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(255,215,0,0.5);
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+.brand-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+}
+
+.role-badge {
+  margin-left: auto;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ── Cards / Surfaces ── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+/* ── Timer Ring ── */
+.timer-ring-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-ring-wrap svg {
+  transform: rotate(-90deg);
+}
+
+.timer-ring-bg {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 8;
+}
+
+.timer-ring-fill {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.9s linear, stroke 0.5s ease;
+}
+
+.timer-ring-fill.urgent {
+  stroke: var(--color-left);
+  animation: timerUrgent 0.5s ease infinite alternate;
+}
+
+.timer-text {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  transition: color 0.5s;
+}
+
+.timer-text.urgent { color: var(--color-left); }
+
+/* ── Question Card ── */
+.question-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.question-counter {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Answer Options ── */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: default;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.option-btn .option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-border);
+  border-radius: 0.5rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  color: var(--color-gold);
+  transition: var(--transition);
+}
+
+.option-btn.correct {
+  background: rgba(34,197,94,0.15);
+  border-color: var(--color-success);
+  animation: correctPulse 0.6s ease;
+}
+.option-btn.correct .option-letter {
+  background: var(--color-success);
+  color: #fff;
+}
+
+.option-btn.reveal-wrong {
+  opacity: 0.4;
+}
+
+/* ── Buzz Indicator Panel ── */
+.buzz-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  background: rgba(255,255,255,0.03);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: var(--transition);
+  min-height: 3.5rem;
+}
+
+.buzz-indicator.buzzed-left {
+  border-color: var(--color-left);
+  background: var(--color-left-bg);
+  box-shadow: 0 0 20px var(--color-left-glow);
+  animation: buzzFlash 0.4s ease;
+  color: var(--color-left);
+}
+
+.buzz-indicator.buzzed-right {
+  border-color: var(--color-right);
+  background: var(--color-right-bg);
+  box-shadow: 0 0 20px var(--color-right-glow);
+  animation: buzzFlash 0.4s ease;
+  color: var(--color-right);
+}
+
+/* ── Scoreboard ── */
+.score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.score-row.left {
+  background: var(--color-left-bg);
+  border: 1.5px solid rgba(239,68,68,0.3);
+}
+
+.score-row.right {
+  background: var(--color-right-bg);
+  border: 1.5px solid rgba(59,130,246,0.3);
+}
+
+.score-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.score-row.left .score-value { color: var(--color-left); }
+.score-row.right .score-value { color: var(--color-right); }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn:not(:disabled):hover { transform: translateY(-2px); }
+.btn:not(:disabled):active { transform: translateY(0); }
+
+.btn-gold {
+  background: var(--color-gold);
+  color: #0d1b2a;
+  box-shadow: 0 4px 16px rgba(255,215,0,0.3);
+}
+.btn-gold:not(:disabled):hover { box-shadow: 0 6px 24px rgba(255,215,0,0.5); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--color-border);
+}
+.btn-outline:not(:disabled):hover { border-color: var(--color-gold); color: var(--color-gold); }
+
+.btn-success {
+  background: rgba(34,197,94,0.15);
+  color: var(--color-success);
+  border: 1.5px solid rgba(34,197,94,0.4);
+}
+.btn-success:not(:disabled):hover { background: rgba(34,197,94,0.25); }
+
+.btn-danger {
+  background: rgba(239,68,68,0.15);
+  color: var(--color-left);
+  border: 1.5px solid rgba(239,68,68,0.4);
+}
+
+.btn-large { padding: 1rem 2.5rem; font-size: 1.05rem; }
+.btn-sm { padding: 0.5rem 1rem; font-size: 0.8rem; }
+
+/* ── BUZZ Button (Teams) ── */
+.buzz-btn {
+  width: min(18rem, 80vw);
+  height: min(18rem, 80vw);
+  border-radius: 50%;
+  border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  box-shadow: 0 0 40px currentColor;
+}
+
+.buzz-btn::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  opacity: 0.4;
+  animation: buzzerRing 2s ease infinite;
+}
+
+.buzz-btn:not(:disabled):hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 60px currentColor;
+}
+
+.buzz-btn:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+.buzz-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none;
+  animation: none;
+}
+
+.buzz-btn:disabled::before { display: none; }
+
+.buzz-btn.left-btn {
+  background: var(--color-left);
+  color: var(--color-left);
+}
+.buzz-btn.left-btn span { color: #fff; }
+
+.buzz-btn.right-btn {
+  background: var(--color-right);
+  color: var(--color-right);
+}
+.buzz-btn.right-btn span { color: #fff; }
+
+/* ── Status Banner ── */
+.status-banner {
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  background: rgba(255,255,255,0.03);
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  transition: var(--transition);
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-banner.status-waiting { color: var(--text-muted); }
+
+.status-banner.status-sent {
+  border-color: var(--color-gold);
+  background: rgba(255,215,0,0.08);
+  color: var(--color-gold);
+  animation: statusPop 0.4s ease;
+}
+
+.status-banner.status-first {
+  border-color: var(--color-success);
+  background: rgba(34,197,94,0.1);
+  color: var(--color-success);
+  animation: correctPulse 0.6s ease;
+}
+
+.status-banner.status-late {
+  border-color: var(--color-wrong);
+  background: rgba(239,68,68,0.08);
+  color: var(--color-wrong);
+}
+
+.status-banner.status-connected {
+  border-color: var(--color-success);
+  background: rgba(34,197,94,0.08);
+  color: var(--color-success);
+}
+
+/* ── Connection Status Dot ── */
+.conn-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--text-muted);
+  display: inline-block;
+  transition: var(--transition);
+}
+.conn-dot.connected { background: var(--color-success); box-shadow: 0 0 6px var(--color-success); animation: dotPulse 2s ease infinite; }
+.conn-dot.error { background: var(--color-wrong); }
+
+/* ── Progress Bar ── */
+.progress-bar-wrap {
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-gold);
+  border-radius: 999px;
+  transition: width 0.9s linear, background 0.5s;
+}
+.progress-bar-fill.urgent { background: var(--color-left); }
+
+/* ── End Game Overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,27,42,0.95);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.winner-card {
+  text-align: center;
+  max-width: 480px;
+  width: 90%;
+}
+
+.winner-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  animation: winnerEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.winner-badge.tie { color: var(--color-gold); }
+.winner-badge.left { color: var(--color-left); }
+.winner-badge.right { color: var(--color-right); }
+
+/* ── Team color utilities ── */
+.team-left .role-badge  { background: var(--color-left-bg); color: var(--color-left); border: 1px solid rgba(239,68,68,0.4); }
+.team-right .role-badge { background: var(--color-right-bg); color: var(--color-right); border: 1px solid rgba(59,130,246,0.4); }
+.team-animator .role-badge { background: rgba(255,215,0,0.1); color: var(--color-gold); border: 1px solid rgba(255,215,0,0.4); }
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 1rem 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .options-grid { grid-template-columns: 1fr; }
+  .question-text { font-size: 1.1rem; }
+  .timer-text { font-size: 2rem; }
+  .brand-header { padding: 1rem 1.25rem; }
+}
+
+@media (min-width: 1400px) {
+  /* Projector mode: larger text */
+  .question-text { font-size: 1.7rem; }
+  .option-btn { font-size: 1rem; padding: 1.1rem 1.3rem; }
+  .timer-text { font-size: 3.5rem; }
+}
+
+/* ── Keyframe Animations ── */
+@keyframes logoPulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(255,215,0,0.4); }
+  50%       { box-shadow: 0 0 28px rgba(255,215,0,0.8); }
+}
+
+@keyframes correctPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes buzzFlash {
+  0%   { opacity: 0.3; transform: scale(0.97); }
+  60%  { opacity: 1;   transform: scale(1.01); }
+  100% { opacity: 1;   transform: scale(1); }
+}
+
+@keyframes timerUrgent {
+  from { opacity: 1; }
+  to   { opacity: 0.6; }
+}
+
+@keyframes statusPop {
+  0%   { transform: scale(0.95); opacity: 0.6; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes winnerEntrance {
+  0%   { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+  100% { transform: scale(1)   rotate(0deg);  opacity: 1; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes buzzerRing {
+  0%   { transform: scale(1);    opacity: 0.4; }
+  50%  { transform: scale(1.08); opacity: 0.1; }
+  100% { transform: scale(1);    opacity: 0.4; }
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(1rem); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.animate-slide-up { animation: slideUp 0.35s ease; }
+.hidden { display: none !important; }
