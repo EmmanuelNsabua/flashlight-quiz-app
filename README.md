@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Learnify
-=======
 # 🔦 Flashlight Quiz
 
 A **real-time, multiplayer quiz game** for the Flashlight University English Club — inspired by "Questions for a Champion" and "Burger Quiz". No server required. Works entirely in the browser via PeerJS, deployable to GitHub Pages or Vercel.
@@ -247,4 +244,3 @@ Update the title text "FLASHLIGHT" in each HTML file's `<title>` tag and the `.b
 ---
 
 *Built with ❤️ for the Flashlight University English Club.*
->>>>>>> 465bb99 (Initial commit)

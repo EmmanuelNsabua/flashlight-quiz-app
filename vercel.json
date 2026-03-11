@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/animator", "destination": "/animator/index.html" },
+    { "source": "/animator/", "destination": "/animator/index.html" },
+    { "source": "/left", "destination": "/left/index.html" },
+    { "source": "/left/", "destination": "/left/index.html" },
+    { "source": "/right", "destination": "/right/index.html" },
+    { "source": "/right/", "destination": "/right/index.html" }
+  ]
+}
