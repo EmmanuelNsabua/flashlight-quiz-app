@@ -1,0 +1,340 @@
+[
+  {
+    "question": "What is the opposite of 'big'?",
+    "options": ["Huge", "Small", "Tall", "Wide"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["She go to school", "She goes to school", "She going to school", "She gone to school"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What does 'hungry' mean?",
+    "options": ["Full", "Thirsty", "Wanting food", "Sleepy"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Complete: 'He ___ playing football.'",
+    "options": ["like", "likes", "liking", "liked"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which is a verb?",
+    "options": ["Run", "Blue", "Chair", "Happy"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "What is the past of 'go'?",
+    "options": ["Goed", "Went", "Gone", "Going"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct article: ___ apple",
+    "options": ["a", "an", "the", "no article"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which one is a color?",
+    "options": ["Quickly", "Red", "Jump", "Eat"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the plural of 'man'?",
+    "options": ["mans", "men", "manes", "mens"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which is correct?",
+    "options": ["I am 20 years", "I have 20 years", "I am 20 years old", "I have 20 years old"],
+    "correctAnswer": 2
+  },
+
+  {
+    "question": "Translate: 'Je suis étudiant'",
+    "options": ["I am teacher", "I am student", "I am a student", "I student"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Which is a question?",
+    "options": ["You are happy.", "Are you happy?", "You happy are.", "Happy you are."],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct word: 'She is very ___'",
+    "options": ["beauty", "beautiful", "beautify", "beautifull"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What does 'fast' mean?",
+    "options": ["Slow", "Quick", "Late", "Far"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Complete: 'They ___ watching TV.'",
+    "options": ["is", "am", "are", "be"],
+    "correctAnswer": 2
+  },
+
+  {
+    "question": "Which is correct?",
+    "options": ["He don't like pizza", "He doesn't like pizza", "He not like pizza", "He no like pizza"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the synonym of 'smart'?",
+    "options": ["Stupid", "Intelligent", "Lazy", "Slow"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the past of 'eat'?",
+    "options": ["Eated", "Ate", "Eaten", "Eating"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["I can to swim", "I can swim", "I can swimming", "I can swims"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the plural of 'tooth'?",
+    "options": ["tooths", "teeth", "toothes", "teeths"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "What does 'library' mean?",
+    "options": ["Place to eat", "Place to read books", "Place to sleep", "Place to play"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct preposition: 'I am ___ school'",
+    "options": ["on", "in", "at", "to"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Which word is an adjective?",
+    "options": ["Quickly", "Happiness", "Beautiful", "Run"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Complete: 'She ___ to music every day.'",
+    "options": ["listen", "listens", "listening", "listened"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the opposite of 'hot'?",
+    "options": ["Warm", "Cold", "Cool", "Heat"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["We was happy", "We were happy", "We be happy", "We is happy"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What does 'early' mean?",
+    "options": ["Late", "Before time", "Fast", "Slow"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which is a noun?",
+    "options": ["Run", "Blue", "Table", "Quickly"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Complete: 'I ___ my homework yesterday.'",
+    "options": ["do", "does", "did", "done"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the plural of 'foot'?",
+    "options": ["foots", "feet", "footes", "feets"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "Choose the correct word: 'He is ___ than me.'",
+    "options": ["tall", "taller", "tallest", "more tall"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What does 'always' mean?",
+    "options": ["Never", "Sometimes", "Every time", "Rarely"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Which is correct?",
+    "options": ["I have eat", "I have eaten", "I has eaten", "I had ate"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["She don't know", "She doesn't know", "She not know", "She no knows"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the opposite of 'easy'?",
+    "options": ["Simple", "Hard", "Soft", "Clear"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "What does 'teacher' mean?",
+    "options": ["Student", "Person who teaches", "Doctor", "Driver"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct preposition: 'He is ___ the room'",
+    "options": ["in", "on", "at", "to"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Complete: 'We ___ going to the market.'",
+    "options": ["is", "am", "are", "be"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the plural of 'mouse'?",
+    "options": ["mouses", "mice", "mousees", "mices"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which is correct?",
+    "options": ["I didn't went", "I didn't go", "I didn't goes", "I not go"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "What does 'late' mean?",
+    "options": ["On time", "After expected time", "Before time", "Fast"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct word: 'They are ___ students.'",
+    "options": ["good", "well", "better", "best"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Complete: 'She ___ already finished.'",
+    "options": ["have", "has", "had", "having"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the opposite of 'young'?",
+    "options": ["New", "Old", "Big", "Tall"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which is correct?",
+    "options": ["He can sings", "He can sing", "He can singing", "He can to sing"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "What does 'buy' mean?",
+    "options": ["Sell", "Take", "Purchase", "Give"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["I am agree", "I agree", "I agreeing", "I agrees"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the plural of 'person'?",
+    "options": ["persons", "people", "peoples", "persones"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Complete: 'He ___ never been there.'",
+    "options": ["have", "has", "had", "having"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the opposite of 'rich'?",
+    "options": ["Poor", "Strong", "Happy", "Big"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Which sentence is correct?",
+    "options": ["If I was you, I would go", "If I were you, I would go", "If I am you, I go", "If I be you, I will go"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct form: 'She has been ___ for 2 hours.'",
+    "options": ["study", "studied", "studying", "studies"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the meaning of 'once in a blue moon'?",
+    "options": ["Very often", "Never", "Very rarely", "Every day"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Which is correct?",
+    "options": ["I look forward to see you", "I look forward to seeing you", "I look forward see you", "I look forward saw you"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["He told me that he is tired", "He told me that he was tired", "He tell me he was tired", "He tells me he tired"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "😂 What is the plural of 'fish'?",
+    "options": ["Fishs", "Fishes", "Fish", "All are possible"],
+    "correctAnswer": 3
+  },
+  {
+    "question": "😂 Which sentence is correct?",
+    "options": ["I am boring", "I am bored", "I boring", "I bored"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "😂 What does 'I'm broke' mean?",
+    "options": ["I am broken", "I have no money", "I am tired", "I am sick"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "Which word is closest in meaning to 'angry'?",
+    "options": ["Happy", "Furious", "Calm", "Quiet"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct sentence:",
+    "options": ["She suggested to go out", "She suggested going out", "She suggested go out", "She suggest going out"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "😂 What does 'piece of cake' mean?",
+    "options": ["Something delicious", "Something easy", "Something expensive", "Something boring"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "😂 Which one is correct?",
+    "options": ["I did a mistake", "I made a mistake", "I make a mistake yesterday", "I making a mistake"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "Which is correct?",
+    "options": ["He has less friends", "He has fewer friends", "He have fewer friends", "He has fewers friends"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Choose the correct word:",
+    "options": ["Advise (noun)", "Advice (noun)", "Advices (correct plural)", "Advise (plural noun)"],
+    "correctAnswer": 1
+  },
+
+  {
+    "question": "What does 'spill the tea' mean?",
+    "options": ["Drop a drink", "Tell a secret/gossip", "Make tea", "Be angry"],
+    "correctAnswer": 1
+  }
+]
